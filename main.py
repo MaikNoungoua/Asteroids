@@ -15,7 +15,9 @@ from circleshape import Shot
 def main():
     pygame.init()
     pygame.font.init()
+
     my_font = pygame.font.SysFont('Arial', 30)
+    background = pygame.image.load('./images/background1.jpg')
     score_value = 0 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
@@ -51,7 +53,8 @@ def main():
         for obj in updatable:
             obj.update(dt)
 
-        screen.fill("black")
+        #screen.fill("black")
+        screen.blit(background, (0,0))
             
 
         for obj in asteroids: 
