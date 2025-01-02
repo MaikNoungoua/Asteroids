@@ -28,6 +28,7 @@ class CircleShape(pygame.sprite.Sprite):
        total_radius = self.radius + other.radius
        #print(f"Object types: {type(self)} and {type(other)}")
        #print(f"Distance: {distance}, Combined Radius: {total_radius}")
+       #print(f"Asteroid radius: {self.radius}")
        return distance <= total_radius
 
 

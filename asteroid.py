@@ -30,6 +30,18 @@ class Asteroid(CircleShape):
             ast2.velocity = vector2 * 50.2
             #ast1 = Asteroid(self.position.x, self.position.y, new_radius )
 
+    def update_score(self):
+        
+        if self.radius == 5 : 
+            return 25
+        elif self.radius == 20: 
+            return 15
+        elif self.radius == 40: 
+            return 10
+        elif self.radius == 60: 
+            return 5
+        
+
         
 
 

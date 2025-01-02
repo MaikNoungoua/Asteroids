@@ -9,9 +9,14 @@ from asteroid import Asteroid
 from asteroidfield import AsteroidField
 from circleshape import Shot
 
+#my_font = pygame.font.SysFont('Arial', 30)
+
 
 def main():
     pygame.init()
+    pygame.font.init()
+    my_font = pygame.font.SysFont('Arial', 30)
+    score_value = 0 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
 
@@ -31,22 +36,23 @@ def main():
 
     dt = 0
 
+    def printing_score(text, font, text_col, x, y):
+        img = font.render(text, True, text_col)
+        screen.blit(img, (x, y))
+    
+
     while True:
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+        
 
         for obj in updatable:
             obj.update(dt)
-            
 
-        
-        #for obj in asteroids: 
-            #if obj.collision_detection(player):
-                #print("Game over!")
-               #sys.exit()
-        #asteroid_bullet_collisions = pygame.sprite.groupcollide(asteroids, shots, True, True)
-        #asteroid_player_collision = pygame.sprite.spritecollide(player, asteroids, False)
+        screen.fill("black")
+            
 
         for obj in asteroids: 
             
@@ -58,16 +64,25 @@ def main():
                 if bullets.collision_detection(obj):
                     obj.split()
                     bullets.kill()
+                    score_value += obj.update_score()
+                    
+                    print(f"new score = {score_value}")
+
+        
 
 
-
-
-        screen.fill("black")
+        #screen.fill("black")
 
         for obj in drawable:
             obj.draw(screen)
 
-        pygame.display.flip()
+        
+        score_card = "Score = " + str(score_value)
+
+        printing_score(str(score_card), my_font,(255,255,255), 1000, 650)
+
+        pygame.display.update()
+        #pygame.display.flip()
 
         # limit the framerate to 60 FPS
         dt = clock.tick(60) / 1000
