@@ -23,11 +23,11 @@ class CircleShape(pygame.sprite.Sprite):
         pass
 
     def collision_detection(self, other):
-
-        if pygame.math.Vector2.distance_to(self.position, other.position) <= (self.radius + other.radius):
-            return True 
-        else: 
-            return False 
+       distance = pygame.math.Vector2.distance_to(self.position, other.position)
+       total_radius = self.radius + other.radius
+       #print(f"Object types: {type(self)} and {type(other)}")
+       #print(f"Distance: {distance}, Combined Radius: {total_radius}")
+       return distance <= total_radius
 
 
 class Shot(CircleShape):
@@ -39,4 +39,6 @@ class Shot(CircleShape):
 
     def update(self, dt):
         self.position += (self.velocity * dt)
+
+
     
