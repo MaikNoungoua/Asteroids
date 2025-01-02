@@ -56,8 +56,10 @@ def main():
             for bullets in shots: 
                 #print(f"Checking bullet collision: {bullets.position}")
                 if bullets.collision_detection(obj):
-                    obj.kill()
+                    obj.split()
                     bullets.kill()
+
+
 
 
         screen.fill("black")
