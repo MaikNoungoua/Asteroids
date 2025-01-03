@@ -45,7 +45,9 @@ class Player(CircleShape):
             self.move(-dt)
 
         if keys[pygame.K_SPACE] and self.timer <= 0:
+            weapon_sound = pygame.mixer.Sound('./sounds/laser_se.wav')
             self.shoot()
+            pygame.mixer.Sound.play(weapon_sound)
             self.timer = 0.3
             
 
